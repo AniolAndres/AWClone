@@ -2,17 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GridManager : MonoBehaviour
 {
     [SerializeField]
     private TileView TilePrefab;
 
+    [SerializeField]
+    private ActorScript actorPrefab;
+
     private List<TileController> tileControllers;
 
     public void Start()
     {
         GenerateGrid(6, 6);
+        SpawnActorAt(2, 3);
+    }
+
+    private void SpawnActorAt(int w, int h) {
+        var tileController = tileControllers.Single(x => x.Model.X == w && x.Model.Y == h);
+        tileController.SpawnActor(actorPrefab);
     }
 
     public void GenerateGrid(int width, int height)
@@ -32,10 +42,4 @@ public class GridManager : MonoBehaviour
             }            
         }
     }
-
-    //private void CenterCamera()
-    //{
-    //    var cameraMain = Camera.main;
-    //    cameraMain.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
-    //}
 }

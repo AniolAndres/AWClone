@@ -2,17 +2,17 @@
 using System.Collections;
 
 
-[System.Serializable]
 public class TileModel
 {
-    private readonly int x;
+    public ActorScript actor;
 
-    private readonly int y;
+    public int X { get; }
+
+    public int Y { get; }
 
     public TileModel(int x, int y)
     {
-        this.x = x;
-        this.y = y;
+        this.X = x;
+        this.Y = y;
     }
-        
 }

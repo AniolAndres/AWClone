@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class TileController 
 {
 
     private readonly TileView view;
 
     private readonly TileModel model;
+
+    public TileModel Model => model;
 
     public TileController(TileView view, TileModel model){
         this.view = view;
@@ -25,6 +26,10 @@ public class TileController
     }
 
     private void HandleTileClicked() {
-        Debug.Log("Tile " + view.name + " clicked");
+        Debug.Log($"Tile {model.X} - {model.Y} clicked");
+    }
+
+    public void SpawnActor(ActorScript actorPrefab) {
+        view.InstantiateActor(actorPrefab);
     }
 }
